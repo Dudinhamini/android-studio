@@ -12,63 +12,78 @@
         android:id="@+id/tittle_cadastro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="120dp"
         android:layout_marginEnd="30dp"
         android:text="@string/title_cadastrar"
         android:textSize="50sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.53"
+        app:layout_constraintHorizontal_bias="0.592"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/containercomponens"
         style="@style/ContainerComponents"
-        app:layout_constraintEnd_toEnd0f="parent"
-        app:layout_constraintStart_toStart0f="parent"
-        app:layout_constraintTop_toBottom0f="@+id/tittle_cadastro"
-        tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="303dp" />
-
-    <EditText
-        android:id="@+id/edit_nome"
-        style="@style/Edit_Text"
-        android:hint="Nome"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="@id/containercomponens"
-        app:layout_constraintStart_toStartOf="@id/containercomponens"
-        app:layout_constraintTop_toTopOf="@+id/containercomponens" />
+        android:layout_width="361dp"
+        android:layout_height="266dp"
+        android:layout_marginTop="156dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tittle_cadastro" />
 
     <EditText
         android:id="@+id/edit_email"
         style="@style/Edit_Text"
+        android:layout_width="319dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="104dp"
+        android:drawableEnd="@drawable/email"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        android:maxLength="25"
-        android:drawableRight="@drawable/email"
         app:layout_constraintEnd_toEndOf="@id/containercomponens"
+        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="@id/containercomponens"
-        app:layout_constraintTop_toBottomOf="@+id/edit_nome" />
+        app:layout_constraintTop_toTopOf="@id/containercomponens" />
 
     <EditText
         android:id="@+id/edit_senha"
         style="@style/Edit_Text"
-        android:hint="Nome"
-        android:inputType="text"
-        android:maxLength="25"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="184dp"
+        android:hint="Senha"
+        android:inputType="textPassword"
+        android:drawableRight="@drawable/visibility_off"
         app:layout_constraintEnd_toEndOf="@id/containercomponens"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="@id/containercomponens"
         app:layout_constraintTop_toTopOf="@+id/containercomponens" />
 
     <EditText
         android:id="@+id/edit_nome"
         style="@style/Edit_Text"
+        android:layout_width="316dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="28dp"
+        android:drawableRight="@drawable/account_circle"
         android:hint="Nome"
         android:inputType="text"
         android:maxLength="25"
         app:layout_constraintEnd_toEndOf="@id/containercomponens"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="@id/containercomponens"
         app:layout_constraintTop_toTopOf="@+id/containercomponens" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt_cadastro"
+        android:text="@string/title_cadastrar"
+        style="@style/button"
+        android:textColor="@color/white"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/containercomponens"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
