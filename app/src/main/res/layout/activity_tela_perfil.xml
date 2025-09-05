@@ -78,10 +78,11 @@
         />
 
     <Button
-        android:layout_width="562dp"
-        android:layout_height="66dp"
+        android:id="@+id/bt_sair"
+        android:layout_width="399dp"
+        android:layout_height="68dp"
         android:layout_margin="20dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="@color/black"
         android:padding="20dp"
         android:text="Sair"
@@ -91,6 +92,6 @@
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/textEmailUser"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp" />
+        tools:layout_editor_absoluteX="6dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

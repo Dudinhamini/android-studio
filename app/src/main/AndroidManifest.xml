@@ -15,7 +15,7 @@
         <activity
             android:name=".Tela_Perfil"
             android:exported="true"
-            android:theme="@style/Theme.MariaEduardaVieira"/>
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".FormCadastro"
             android:exported="false"
