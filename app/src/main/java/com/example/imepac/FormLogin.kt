@@ -19,7 +19,7 @@ class FormLogin : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_form_login)
         getSupportActionBar()?.hide();
-        Fire
+
         val linkFormCadastro=findViewById<TextView>(R.id.text_tela_cadastro)
         linkFormCadastro.setOnClickListener{
             val telaCadastro = Intent(this, FormCadastro::class.java)
