@@ -33,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tittle_cadastro" />
 
     <EditText
-        android:id="@+id/edit_email"
+        android:id="@+id/edit_email_login"
         style="@style/Edit_Text"
         android:layout_width="319dp"
         android:layout_height="61dp"
@@ -47,7 +47,7 @@
         app:layout_constraintTop_toTopOf="@id/containercomponens" />
 
     <EditText
-        android:id="@+id/edit_senha"
+        android:id="@+id/edit_senha_login"
         style="@style/Edit_Text"
         android:layout_width="320dp"
         android:layout_height="60dp"
