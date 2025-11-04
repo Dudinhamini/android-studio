@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/backgroud"
-    tools:context=".Tela_Perfil">
+    tools:context=".TelaPerfil">
 
     <View
         android:id="@+id/containerUser"
@@ -39,13 +39,13 @@
         app:layout_constraintTop_toBottomOf="@id/containerUser"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <TextView
+    <EditText
         android:id="@+id/textNomeUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="40dp"
-        android:text="Nome Exemplo"
+        android:text=""
         android:textColor="@color/white"
         android:textSize="22dp"
         android:textStyle="bold"
@@ -63,13 +63,13 @@
         app:layout_constraintTop_toBottomOf="@id/ic_person"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <TextView
+    <EditText
         android:id="@+id/textEmailUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="45dp"
-        android:text="meuemail@gmail.com"
+        android:text=""
         android:textColor="@color/white"
         android:textSize="22dp"
         android:textStyle="bold"

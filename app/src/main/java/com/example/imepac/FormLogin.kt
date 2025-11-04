@@ -2,7 +2,6 @@ package com.example.imepac
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -10,13 +9,9 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.imepac.ui.theme.TelaPrincipal
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import kotlin.math.log
 
 class FormLogin : AppCompatActivity() {
 
@@ -40,7 +35,7 @@ class FormLogin : AppCompatActivity() {
 
         val linkTelaPerfil = findViewById<Button>(R.id.bt_entrada)
         linkTelaPerfil.setOnClickListener {
-            val telaPerfil = Intent(this, Tela_Perfil::class.java)
+            val telaPerfil = Intent(this, TelaPerfil::class.java)
             startActivity(telaPerfil)
         }
 
@@ -65,7 +60,7 @@ class FormLogin : AppCompatActivity() {
                 progressBar.visibility = View.GONE
 
                 val user = FirebaseAuth.getInstance().currentUser
-                val intent = Intent(this@FormLogin, TelaPrincipal::class.java)
+                val intent = Intent(this@FormLogin, TelaPerfil::class.java)
                 startActivity(intent)
                 finish()
             } else {
