@@ -21,9 +21,12 @@ class TelaPerfil : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_tela_perfil)
         getSupportActionBar()?.hide()
+
+        // Inicialize o Firestore ANTES de qualquer outra coisa
+        db = FirebaseFirestore.getInstance()
+
         IniciarComponentes()
 
-        db = FirebaseFirestore.getInstance()
         btnSair.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             val intent = Intent(this@TelaPerfil, FormLogin::class.java)
@@ -35,15 +38,18 @@ class TelaPerfil : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         val userEmail = FirebaseAuth.getInstance().currentUser?.email
-        emailUser.setText(userEmail)
-        if (userEmail != null){
-            buscarNomeDoEmail(userEmail)
+
+        userEmail?.let {
+            emailUser.setText(it)
+            buscarNomeDoEmail(it)
         }
+
     }
 
-    fun buscarNomeDoEmail(email: String){
+    private fun buscarNomeDoEmail(email: String){
         val usuariosRef = db.collection("Usuarios")
         val query = usuariosRef.whereEqualTo("email", email)
+
         query.get()
             .addOnSuccessListener { querySnapshot ->
                 if (!querySnapshot.isEmpty) {
@@ -52,32 +58,20 @@ class TelaPerfil : AppCompatActivity() {
                     if (nome != null) {
                         usuarioUser.setText(nome)
                     } else {
-                        println("nome não encontrado para o email $email")
+                        println("Nome não encontrado para o email $email")
                     }
                 } else {
-                    println("nenhum documento encontrado para o email $email")
+                    println("Nenhum documento encontrado para o email $email")
                 }
             }
             .addOnFailureListener { e ->
-                println("erro ao buscar documento $e")
+                println("Erro ao buscar documento: ${e.message}")
             }
     }
 
-    fun IniciarComponentes(){
+    private fun IniciarComponentes(){
         emailUser = findViewById(R.id.textEmailUser)
         usuarioUser = findViewById(R.id.textNomeUser)
         btnSair = findViewById(R.id.bt_sair)
-    }
-
-    fun fetchAllNames(){
-        val usuariosRef = db.collection("Usuarios")
-        usuariosRef.get().addOnSuccessListener { queryDocumentSnapshots ->
-            for (document in queryDocumentSnapshots.documents){
-                val nome = document.getString("nome")
-                println("nome: $nome")
-            }
-        }.addOnFailureListener { exception ->
-            println("erro ao buscar os nomes: ${exception.message}")
-        }
     }
 }

@@ -5,14 +5,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ProgressBar
-import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-
 
 class FormCadastro : AppCompatActivity() {
 
@@ -41,27 +37,23 @@ class FormCadastro : AppCompatActivity() {
                 val mensagemErro = "Campos não preenchidos, tente novamente"
                 Snackbar.make(view, mensagemErro, Snackbar.LENGTH_LONG).show()
             } else {
-                cadastrarUsuario(
-                    view,
-                    nome = TODO(),
-                    email = TODO(),
-                    senha = TODO()
-                )
+                // CORREÇÃO 1: Passar os valores reais, não TODO()
+                cadastrarUsuario(view, nome, email, senha)
             }
         }
     }
 
     private fun cadastrarUsuario(view: View, nome: String, email: String, senha: String) {
         val auth = FirebaseAuth.getInstance()
-        val db = FirebaseFirestore.getInstance()
 
         auth.createUserWithEmailAndPassword(email, senha)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    salvarDadosUsuario()
+                    // CORREÇÃO 2: Passar o nome para salvar
+                    salvarDadosUsuario(nome)
 
                     val mensagemOK = "Cadastro realizado com sucesso"
-                    val snakbar = Snackbar.make(view, mensagemOK, Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(view, mensagemOK, Snackbar.LENGTH_LONG).show()
 
                     // Volta para o login após 2 segundos
                     view.postDelayed({
@@ -77,29 +69,30 @@ class FormCadastro : AppCompatActivity() {
             }
     }
 
-    fun salvarDadosUsuario() {
+    private fun salvarDadosUsuario(nome: String) {
         val db = FirebaseFirestore.getInstance()
-        val nome = editNome.text.toString().trim()
         val usuarioID = FirebaseAuth.getInstance().currentUser?.uid
         val email = FirebaseAuth.getInstance().currentUser?.email
+
         if (usuarioID != null && email != null) {
             val usuarios = hashMapOf(
-                "none" to nome,
+                "nome" to nome,  // CORREÇÃO 3: era "none", agora é "nome"
                 "email" to email,
                 "uid" to usuarioID
             )
+
+            // CORREÇÃO 4: Usar .document(usuarioID).set() em vez de .add()
             db.collection("Usuarios")
-                .add(usuarios)
-                .addOnSuccessListener { documentReference ->// Add con sucesso
-                    println("Docunento adicionado con ID: ${documentReference.id}")
+                .document(usuarioID)  // Usa o UID como ID do documento
+                .set(usuarios)
+                .addOnSuccessListener {
+                    println("✓ Usuário salvo com sucesso! ID: $usuarioID")
                 }
                 .addOnFailureListener { e ->
-                    println("Enrro ao adicioner documento: $e")
+                    println("❌ Erro ao salvar usuário: ${e.message}")
                 }
-        } else {// o usuério não está gutenticado
-            println("Enrro na autenticação")
+        } else {
+            println("❌ Erro: Usuário não autenticado")
         }
-
     }
-
 }
